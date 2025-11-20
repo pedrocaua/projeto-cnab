@@ -3,6 +3,66 @@
 Este projeto foi desenvolvido como parte do teste técnico para a vaga de Estágio em Desenvolvimento de Software na Finnet. O objetivo era criar um conjunto de funções capazes de ler, interpretar e processar arquivos CNAB (em um layout fictício), aplicando regras de negócio e transformando os dados em formatos mais úteis, como JSON.
 
 ---
+```
+cnab-desafio/
+├── src/
+│   ├── leitura.php           → Funções da Pergunta 1
+│   ├── conversao.php         → Conversão CNAB → JSON (Pergunta 2)
+│   ├── regras.php            → Regras de negócio (Pergunta 3)
+│   ├── comprovante.php       → Geração de comprovante (Pergunta 4)
+│   ├── totais.php            → Estatísticas de valores (Pergunta 5)
+│
+├── exemplos/
+│   ├── cnab_exemplo1.txt
+│   ├── cnab_exemplo2.txt
+│
+├── comprovantes/             → Comprovantes gerados automaticamente
+│
+├── main.php                  → Arquivo principal para testes manuais
+├── Dockerfile                → Executar o projeto via container
+├── README.md                 → Documentação
+```
+---
+
+##▶️ 2. Como Executar o Projeto (PHP local)
+
+Pré-requisitos:
+- PHP 8.0+ instalado
+- Permissão de escrita para gerar comprovantes
+
+Executar Script Principal
+
+`php main.php`
+O arquivo chama exemplos reais das funções implemetadas
+
+## Saída esperada
+```
+{
+    "leitura": {
+        "header": 1,
+        "detalhes": 3,
+        "trailer": 1
+    },
+    "conversao": {
+        "cnpj": "12.345.678\/0001-99",
+        "data": "01\/01\/2025",
+        "valor": 23.5
+    },
+    "validacao": {
+        "status": "aprovado"
+    },
+    "comprovante": {
+        "status": "aprovado",
+        "arquivo": "comprovantes\/comprovante_691f0af111374.txt"
+    },
+    "totais": {
+        "total_registros": 3,
+        "total_valores": 34.49
+    }
+}
+```
+
+---
 
 ## **Pergunta 01 - Leitura básica do arquivo CNAB**
 
