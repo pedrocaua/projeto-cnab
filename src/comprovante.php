@@ -1,6 +1,7 @@
 <?php
 require_once "regras.php";
-function gerarComprovante($cnpj,$valor)
+
+function gerarComprovante($cnpj, $valor)
 {
     $resultado = validar_Pagamento($cnpj, $valor);
     $status = $resultado["status"];
@@ -20,10 +21,10 @@ function gerarComprovante($cnpj,$valor)
     // Data
     $data = date("d/m/Y H:i:s");
 
-    // ID
+    // ID único
     $id = uniqid();
 
-    // Conteúdo
+    // Conteúdo do comprovante
     $conteudo  = "COMPROVANTE DE PROCESSAMENTO\n";
     $conteudo .= "CNPJ: $cnpjFormatado\n";
     $conteudo .= "VALOR: R$ $valorFormatado\n";
@@ -31,12 +32,19 @@ function gerarComprovante($cnpj,$valor)
     $conteudo .= "STATUS: $status\n";
     $conteudo .= "ID: $id\n";
 
-    // Criar pasta se não existir
-    if (!is_dir("comprovantes")) {
-        mkdir("comprovantes");
+    // Definir pasta padrão
+    $pasta = "comprovantes";
+
+    // Criar pasta se não existir ou se não for gravável
+    if (!is_dir($pasta) || !is_writable($pasta)) {
+        $pasta = "comprovantes_temp";
+        if (!is_dir($pasta)) {
+            mkdir($pasta);
+        }
     }
 
-    $arquivo = "comprovantes/comprovante_$id.txt";
+    // Caminho do arquivo
+    $arquivo = "$pasta/comprovante_$id.txt";
     file_put_contents($arquivo, $conteudo);
 
     return ["status" => $status, "arquivo" => $arquivo];

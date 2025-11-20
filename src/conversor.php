@@ -11,9 +11,16 @@ function converterLinhaCnabParaJson($linha)
     $data  = substr($linha, 15, 8);
     $valor = substr($linha, 23, 10);
 
-    // Verifica se é linha do tipo 1
+    // Verifica tipo
     if ($tipo != "1") {
         return ["erro" => "Tipo incorreto"];
+    }
+
+    // Verificar se o CNPJ contém apenas números
+    for ($i = 0; $i < strlen($cnpj); $i++) {
+        if ($cnpj[$i] < '0' || $cnpj[$i] > '9') {
+            return ["erro" => "CNPJ contém caracteres inválidos"];
+        }
     }
 
     // Formatar CNPJ
@@ -32,9 +39,6 @@ function converterLinhaCnabParaJson($linha)
 
     // Converter valor
     $valorFinal = intval($valor) / 100;
-
-    // Garante a formatação com duas casas decimais, forçando o valor a ser uma string no JSON.
-    $valorStringFormatado = number_format($valorFinal, 2, '.', '');
 
     return [
         "cnpj" => $cnpjFormatado,

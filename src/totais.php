@@ -10,26 +10,33 @@ function calcular_totais($arquivo)
 
         $linha = trim($linha);
 
+        // Ignorar linhas vazias
         if ($linha == "") {
             continue;
         }
 
-        if (substr($linha, 0, 1) == "1") {
+        // Verifica se é linha de detalhe (tipo 1)
+        $tipo = substr($linha, 0, 1);
+        if ($tipo != "1") {
+            continue;
+        }
 
-            $total++;
+        $total++;
 
-            // últimos 10 caracteres
-            $valorStr = substr($linha, -10);
+        // Pega os últimos 10 caracteres (valor em centavos)
+        $valorStr = substr($linha, -10);
 
-            // converte p/ decimal
+        // Só processa se for numérico
+        if (ctype_digit($valorStr)) {
             $valor = intval($valorStr) / 100;
-
             $soma += $valor;
+        } else {
+            continue;
         }
     }
 
     return [
         "total_registros" => $total,
-        "total_valores" => $soma
+        "total_valores" => round($soma, 2)
     ];
 }
