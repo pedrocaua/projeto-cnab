@@ -24,7 +24,7 @@ cnab-desafio/
 ```
 ---
 
-## ▶️ 2. Como Executar o Projeto (PHP local)
+### ▶️ 2. Como Executar o Projeto (PHP local)
 
 Pré-requisitos:
 - PHP 8.0+ instalado
@@ -35,7 +35,7 @@ Executar Script Principal
 `php main.php`
 O arquivo chama exemplos reais das funções implemetadas
 
-## Saída esperada
+### Saída esperada
 ```
 {
     "leitura": {
