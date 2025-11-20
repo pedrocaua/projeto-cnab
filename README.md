@@ -24,7 +24,7 @@ cnab-desafio/
 ```
 ---
 
-##▶️ 2. Como Executar o Projeto (PHP local)
+## ▶️ 2. Como Executar o Projeto (PHP local)
 
 Pré-requisitos:
 - PHP 8.0+ instalado
