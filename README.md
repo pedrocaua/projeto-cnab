@@ -24,7 +24,7 @@ cnab-desafio/
 ```
 ---
 
-### ▶️ 2. Como Executar o Projeto (PHP local)
+### ▶️ Como Executar o Projeto (PHP local)
 
 Pré-requisitos:
 - PHP 8.0+ instalado
@@ -117,15 +117,15 @@ Acredito que em sistemas reais a validação poderia ser separada, facilitando a
 
 Converter uma linha CNAB 400 contendo:
 
-Tipo
-CNPJ
-Data
-Valor
+- Tipo
+- CNPJ
+- Data
+- Valor
 
 Para um JSON formatado com:
-CNPJ formatado
-Data em DD/MM/AAAA
-Valor convertido de centavos para decimal
+- CNPJ formatado
+- Data em DD/MM/AAAA
+- Valor convertido de centavos para decimal
 
 Exemplo de linha (sem espaços reais, apenas para leitura):
 `1 12345678000199 20250101 0000023500`
